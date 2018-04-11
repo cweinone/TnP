@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,8 @@ namespace TnP
             try
             {
                 //add the plan from xml file to the tree
-                xmlIO.ReadXML(filePath, xmlDoc);
+                if (File.Exists(filePath)) xmlIO.ReadXML(filePath, xmlDoc);
+
                 //EPlanTree = ListtoTree(ePlan);
                 if (EPlanDictionary.GetInstance().GetList() != null)
                 {
@@ -44,17 +46,17 @@ namespace TnP
                         node.Tag = EPlanDictionary.GetInstance().GetList()[i].id;
                         if (EPlanDictionary.GetInstance().GetList()[i].endState)
                         {
-                            //donePlantree.Nodes.Add(node);
-                            //if (EPlanDictionary.GetInstance().GetList()[i].steps != null)
-                            //{
-                            //    for (int j = 0; j < EPlanDictionary.GetInstance().GetList()[i].steps.Count; j++)
-                            //    {
-                            //        donePlantree
-                            //        .Nodes[donePlantree.Nodes.Count - 1]
-                            //        .Nodes
-                            //        .Add(EPlanDictionary.GetInstance().GetList()[i].steps[j].name);
-                            //    }
-                            //}
+                            closedTreeView.Nodes.Add(node);
+                            if (EPlanDictionary.GetInstance().GetList()[i].steps != null)
+                            {
+                                for (int j = 0; j < EPlanDictionary.GetInstance().GetList()[i].steps.Count; j++)
+                                {
+                                    closedTreeView
+                                    .Nodes[closedTreeView.Nodes.Count - 1]
+                                    .Nodes
+                                    .Add(EPlanDictionary.GetInstance().GetList()[i].steps[j].name);
+                                }
+                            }
                         }
                         else
                         {
@@ -81,7 +83,7 @@ namespace TnP
                         }
                     }
                     planTreeView.ExpandAll();
-                    //donePlantree.ExpandAll();
+                    closedTreeView.ExpandAll();
                 }
 
             }
@@ -145,7 +147,7 @@ namespace TnP
             {
                 EPlanDictionary.GetInstance().Remove(EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)));
 
-                //EPlanTree = ListtoTree(ePlan);
+                
                 planTreeView.Nodes.Remove(planTreeView.SelectedNode);
             }
 
@@ -159,7 +161,8 @@ namespace TnP
             }
             else
             {
-                if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)) != null)
+                if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)) != null
+                    && planTreeView.SelectedNode.Parent == null)//
                 {
                     foreach (EPlan p in EPlanDictionary.GetInstance().GetList())
                     {
@@ -174,11 +177,21 @@ namespace TnP
                     {
                         n.BackColor = Color.Empty;
                     }
+                    //timer1.Stop();
+                    //timeHour.Text = "00";
+                    //timeMin.Text = "00";
+                    //timeSec.Text = "00";
+                    //toolStripProgressBar1.Value = 0;
+                    //toolStripLabel5.Text = "0%";
+
                     EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).state = true;//change the state of the plan
                     EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).startF += 1;//add start times
                     EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).startT = DateTime.Now;//record start time
 
-                    //EPlanTree = ListtoTree(ePlan);
+                    toolStripProgressBar1.Value = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).progress;
+                    toolStripLabel5.Text = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).progress.ToString()+"%";
+                    //int sec = (int)EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).lastT.TotalSeconds;
+
                     planTreeView.SelectedNode.BackColor = Color.GreenYellow;
                     timer1.Start();
 
@@ -206,7 +219,7 @@ namespace TnP
             timeMin.Text = "00";
             timeSec.Text = "00";
             toolStripProgressBar1.Value = 0;
-            toolStripLabel2.Text = "0";
+            toolStripLabel5.Text = "0%";
 
         }
 
@@ -247,7 +260,8 @@ namespace TnP
             }
             else
             {
-                if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)) != null)
+                if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)) != null
+                    && planTreeView.SelectedNode.Parent == null)
                 {
                     bool allStepsFlag = true;
                     if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).steps != null)
@@ -274,17 +288,17 @@ namespace TnP
                         EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).endState = true;
                         EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).progress += 10;
                         toolStripProgressBar1.Value = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).progress;
-                        toolStripLabel2.Text = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).progress.ToString();
-                        //EPlanTree = ListtoTree(ePlan);
+                        toolStripLabel5.Text = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).progress.ToString()+"%";
 
-                        //donePlantree.Nodes.Add(planTreeView.SelectedNode.Text);
-                        //if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).steps != null)
-                        //{
-                        //    for (int j = 0; j < EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).steps.Count; j++)
-                        //    {
-                        //        donePlantree.Nodes[donePlantree.Nodes.Count - 1].Nodes.Add(EPlanDictionary.GetInstance().GetList().Find(p => (p.name == EPlanTree.SelectedNode.Text)).steps[j].name);
-                        //    }
-                        //}
+
+                        closedTreeView.Nodes.Add(planTreeView.SelectedNode.Text);
+                        if (EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).steps != null)
+                        {
+                            for (int j = 0; j < EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).steps.Count; j++)
+                            {
+                                closedTreeView.Nodes[closedTreeView.Nodes.Count - 1].Nodes.Add(EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).steps[j].name);
+                            }
+                        }
 
                         MessageBox.Show("Congratualtions! You have done the plan --"
                         + EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Text)).name
@@ -311,7 +325,7 @@ namespace TnP
                         planTreeView.Nodes.Remove(planTreeView.SelectedNode);
 
                         toolStripProgressBar1.Value = 0;
-                        toolStripLabel2.Text = "0";
+                        toolStripLabel5.Text = "0%";
 
                     }
                 }
@@ -325,7 +339,7 @@ namespace TnP
                         .steps.Find(p => (p.name == planTreeView.SelectedNode.Text)).state = true;
                         EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Parent.Text)).progress += 10;
                         toolStripProgressBar1.Value = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Parent.Text)).progress;
-                        toolStripLabel5.Text = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Parent.Text)).progress.ToString();
+                        toolStripLabel5.Text = EPlanDictionary.GetInstance().GetList().Find(p => (p.name == planTreeView.SelectedNode.Parent.Text)).progress.ToString()+"%";
 
                         planTreeView.SelectedNode.BackColor = Color.LightGreen;
                     }
@@ -344,12 +358,15 @@ namespace TnP
                     int sec = (int)(DateTime.Now - p.startT + p.lastT).TotalSeconds;
                     if (sec < 60)
                     {
+                        timeHour.Text = "00";
+                        timeMin.Text = "00";
                         timeSec.Text = sec.ToString();
                     }
                     else if (sec < 3600)
                     {
                         int min = sec / 60;
                         int s = (sec - min * 60);
+                        timeHour.Text = "00";
                         timeMin.Text = min.ToString();
                         timeSec.Text = s.ToString();
 
