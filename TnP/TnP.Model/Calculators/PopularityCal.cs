@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TnP.Model
+namespace TnP.Model.Calculators
 {
-    public class Feature
+    public class PopularityCal
     {
     }
 }

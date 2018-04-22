@@ -9,7 +9,7 @@ namespace TnP.Model.Elements
     public class EPlan
     {
         public string name { set; get; }
-        public int id { set; get; }
+        public long id { set; get; }
 
         public int progress = 0;//record a plan's progress
         public bool state = false;//the plan is/isn't activated

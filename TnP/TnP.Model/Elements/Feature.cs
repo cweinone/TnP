@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TnP.Control
+namespace TnP.Model.Elements
 {
-    public class Class1
+    public class Feature
     {
     }
 }

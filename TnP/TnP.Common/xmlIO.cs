@@ -7,7 +7,7 @@ using System.Xml;
 using TnP.Model.Dictionaries;
 using TnP.Model.Elements;
 
-namespace TnP.Model
+namespace TnP.Common
 {
     public class xmlIO
     {
@@ -222,7 +222,7 @@ namespace TnP.Model
                 XmlElement xe = (XmlElement)xnode;
 
                 plan.name = xe.GetElementsByTagName("name")[0].InnerText;
-                plan.id = int.Parse(xe.GetElementsByTagName("id")[0].InnerText);
+                plan.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
                 plan.progress = int.Parse(xe.GetElementsByTagName("progress")[0].InnerText);
                 if (xe.GetElementsByTagName("state")[0].InnerText == "activated") plan.state = true;
                 else if (xe.GetElementsByTagName("state")[0].InnerText == "inactivated") plan.state = false;
@@ -257,7 +257,7 @@ namespace TnP.Model
                 XmlElement xe = (XmlElement)xnode;
 
                 lplan.name = xe.GetElementsByTagName("name")[0].InnerText;
-                lplan.id = int.Parse(xe.GetElementsByTagName("id")[0].InnerText);
+                lplan.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
                 
                 LPlanDictionary.GetInstance().Add(lplan);
             }
@@ -273,7 +273,7 @@ namespace TnP.Model
                 XmlElement xe = (XmlElement)xnode;
 
                 task.name = xe.GetElementsByTagName("name")[0].InnerText;
-                task.id = int.Parse(xe.GetElementsByTagName("id")[0].InnerText);
+                task.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
                 
                 TaskDictionary.GetInstance().Add(task);
             }
@@ -290,7 +290,7 @@ namespace TnP.Model
                 XmlElement xe = (XmlElement)xnode;
 
                 goal.name = xe.GetElementsByTagName("name")[0].InnerText;
-                goal.id = int.Parse(xe.GetElementsByTagName("id")[0].InnerText);
+                goal.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
                 
                 GoalDictionary.GetInstance().Add(goal);
             }
@@ -307,7 +307,7 @@ namespace TnP.Model
                 XmlElement xe = (XmlElement)xnode;
 
                 thought.name = xe.GetElementsByTagName("name")[0].InnerText;
-                thought.id = int.Parse(xe.GetElementsByTagName("id")[0].InnerText);
+                thought.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
                 
                 ThoughtDictionary.GetInstance().Add(thought);
             }

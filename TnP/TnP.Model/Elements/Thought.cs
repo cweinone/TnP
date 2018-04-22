@@ -9,6 +9,6 @@ namespace TnP.Model.Elements
     public class Thought
     {
         public string name;
-        public int id;
+        public long id;
     }
 }

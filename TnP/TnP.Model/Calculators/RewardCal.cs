@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TnP.Model.Elements
+namespace TnP.Model.Calculators
 {
-    public class LPlan
+    public class RewardCal
     {
-        public string name;
-        public long id;
     }
 }

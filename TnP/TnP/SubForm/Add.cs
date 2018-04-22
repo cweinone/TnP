@@ -8,29 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TnP
+namespace TnP.SubForm
 {
-    public partial class AddSteps : Form
+    public partial class Add : Form
     {
-        public string step;
-
-        public AddSteps()
+        public Add()
         {
             InitializeComponent();
         }
+        public string s;
 
-        private void AddSteps_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OK_Click(object sender, EventArgs e)
+        private void OKbutton_Click(object sender, EventArgs e)
         {
             if (textBox1 != null && textBox1.Text != "")
             {
-                step = textBox1.Text;
+                s = textBox1.Text;
+                this.Close();
             }
-            this.Close();
+
         }
     }
 }

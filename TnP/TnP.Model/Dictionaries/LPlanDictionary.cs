@@ -20,7 +20,7 @@ namespace TnP.Model.Dictionaries
         }
 
         private static object _lock = new object();
-        private Dictionary<int, LPlan> planDictionary = new Dictionary<int, LPlan>();
+        private Dictionary<long, LPlan> planDictionary = new Dictionary<long, LPlan>();
 
         public void Add(LPlan p)
         {
@@ -65,7 +65,7 @@ namespace TnP.Model.Dictionaries
         public List<LPlan> GetList()
         {
             List<LPlan> pList = new List<LPlan>();
-            foreach (KeyValuePair<int, LPlan> kvp in planDictionary)
+            foreach (KeyValuePair<long, LPlan> kvp in planDictionary)
             {
                 pList.Add(kvp.Value);
             }

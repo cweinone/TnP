@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace TnP.Model.Elements
 {
-    public class Step
+    public class SubTask
     {
         public string name;
-        public long id;
+        public int id;
+        public int staskID;
+        public int eplanid;
+        public bool ready;
+        public bool inout;
+        public int difficulty;
+        public int reward;
         public bool state;
     }
 }

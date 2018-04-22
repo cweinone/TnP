@@ -20,7 +20,7 @@ namespace TnP.Model.Dictionaries
         }
 
         private static object _lock = new object();
-        private Dictionary<int, Task> taskDictionary = new Dictionary<int, Task>();
+        private Dictionary<long, Task> taskDictionary = new Dictionary<long, Task>();
 
         public void Add(Task t)
         {
@@ -62,10 +62,22 @@ namespace TnP.Model.Dictionaries
             }
         }
 
+        public Task find(long id)
+        {
+            if (taskDictionary.ContainsKey(id))
+            {
+                lock (_lock)
+                {
+                    if (taskDictionary.ContainsKey(id)) return taskDictionary[id];
+                }
+            }
+            return null;
+        }
+
         public List<Task> GetList()
         {
             List<Task> tList = new List<Task>();
-            foreach (KeyValuePair<int, Task> kvp in taskDictionary)
+            foreach (KeyValuePair<long, Task> kvp in taskDictionary)
             {
                 tList.Add(kvp.Value);
             }

@@ -20,7 +20,7 @@ namespace TnP.Model.Dictionaries
         }
 
         private static object _lock = new object();
-        private Dictionary<int, Thought> thoughtDictionary = new Dictionary<int, Thought>();
+        private Dictionary<long, Thought> thoughtDictionary = new Dictionary<long, Thought>();
 
         public void Add(Thought t)
         {
@@ -65,7 +65,7 @@ namespace TnP.Model.Dictionaries
         public List<Thought> GetList()
         {
             List<Thought> tList = new List<Thought>();
-            foreach (KeyValuePair<int, Thought> kvp in thoughtDictionary)
+            foreach (KeyValuePair<long, Thought> kvp in thoughtDictionary)
             {
                 tList.Add(kvp.Value);
             }

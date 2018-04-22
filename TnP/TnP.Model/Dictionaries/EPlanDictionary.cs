@@ -20,7 +20,7 @@ namespace TnP.Model.Dictionaries
         }
 
         private static object _lock = new object();
-        private Dictionary<int, EPlan> planDictionary = new Dictionary<int, EPlan>();
+        private Dictionary<long, EPlan> planDictionary = new Dictionary<long, EPlan>();
 
         public void Add(EPlan p)
         {
@@ -62,10 +62,22 @@ namespace TnP.Model.Dictionaries
             }
         }
 
+        public EPlan find(long id)
+        {
+            if (planDictionary.ContainsKey(id))
+            {
+                lock (_lock)
+                {
+                    if (planDictionary.ContainsKey(id)) return planDictionary[id];
+                }
+            }
+            return null;
+        }
+
         public List<EPlan> GetList()
         {
             List<EPlan> pList = new List<EPlan>();
-            foreach (KeyValuePair<int, EPlan> kvp in planDictionary)
+            foreach (KeyValuePair<long, EPlan> kvp in planDictionary)
             {
                 pList.Add(kvp.Value);
             }

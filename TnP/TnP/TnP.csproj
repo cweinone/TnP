@@ -74,17 +74,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPlan.cs">
+    <Compile Include="Initialization.cs" />
+    <Compile Include="SubForm\Add.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPlan.Designer.cs">
-      <DependentUpon>AddPlan.cs</DependentUpon>
+    <Compile Include="SubForm\Add.Designer.cs">
+      <DependentUpon>Add.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddSteps.cs">
+    <Compile Include="SubForm\TaskBook.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddSteps.Designer.cs">
-      <DependentUpon>AddSteps.cs</DependentUpon>
+    <Compile Include="SubForm\TaskBook.Designer.cs">
+      <DependentUpon>TaskBook.cs</DependentUpon>
     </Compile>
     <Compile Include="TnP.cs">
       <SubType>Form</SubType>
@@ -94,11 +95,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddPlan.resx">
-      <DependentUpon>AddPlan.cs</DependentUpon>
+    <Compile Include="User\UserOperation.cs" />
+    <EmbeddedResource Include="SubForm\Add.resx">
+      <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddSteps.resx">
-      <DependentUpon>AddSteps.cs</DependentUpon>
+    <EmbeddedResource Include="SubForm\TaskBook.resx">
+      <DependentUpon>TaskBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TnP.resx">
       <DependentUpon>TnP.cs</DependentUpon>
@@ -127,6 +129,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TnP.Common\TnP.Common.csproj">
+      <Project>{d0a92f4b-0bb7-4f15-bc1a-948aab1abddc}</Project>
+      <Name>TnP.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TnP.Control\TnP.Control.csproj">
+      <Project>{658684c2-2a16-48d1-8182-2aaf78a4888b}</Project>
+      <Name>TnP.Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TnP.Model\TnP.Model.csproj">
       <Project>{ae1fa622-b088-4fe2-9ab5-7a2c2ac36b9d}</Project>
       <Name>TnP.Model</Name>
