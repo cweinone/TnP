@@ -9,13 +9,14 @@ namespace TnP.Model.Elements
     public class SubTask
     {
         public string name;
-        public int id;
-        public int staskID;
-        public int eplanid;
+        public long id;
+        public long staskID;
+        public long eplanID;
         public bool ready;
         public bool inout;
         public int difficulty;
         public int reward;
         public bool state;
+        public int order;
     }
 }

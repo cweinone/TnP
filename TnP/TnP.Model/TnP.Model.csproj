@@ -43,6 +43,10 @@
     <Compile Include="Calculators\DifficultyCal.cs" />
     <Compile Include="Calculators\PopularityCal.cs" />
     <Compile Include="Calculators\RewardCal.cs" />
+    <Compile Include="Dictionaries\AllSubDictionary.cs" />
+    <Compile Include="Dictionaries\STaskDictionary.cs" />
+    <Compile Include="Dictionaries\SubTaskDictionary.cs" />
+    <Compile Include="Elements\AllSub.cs" />
     <Compile Include="Elements\STask.cs" />
     <Compile Include="Elements\SubTask.cs" />
     <Compile Include="Elements\Feature.cs" />

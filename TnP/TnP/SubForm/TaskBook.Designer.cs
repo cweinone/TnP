@@ -61,6 +61,7 @@
             this.addButton.TabIndex = 8;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // allTaskList
             // 
@@ -79,6 +80,7 @@
             this.sTaskList.Name = "sTaskList";
             this.sTaskList.Size = new System.Drawing.Size(120, 136);
             this.sTaskList.TabIndex = 10;
+            this.sTaskList.SelectedIndexChanged += new System.EventHandler(this.sTaskList_SelectedIndexChanged);
             // 
             // subtaskList
             // 
@@ -97,6 +99,7 @@
             this.toSTaskButton.TabIndex = 12;
             this.toSTaskButton.Text = "=>";
             this.toSTaskButton.UseVisualStyleBackColor = true;
+            this.toSTaskButton.Click += new System.EventHandler(this.toSTaskButton_Click);
             // 
             // toSubtaskButton
             // 
@@ -106,6 +109,7 @@
             this.toSubtaskButton.TabIndex = 13;
             this.toSubtaskButton.Text = "=>";
             this.toSubtaskButton.UseVisualStyleBackColor = true;
+            this.toSubtaskButton.Click += new System.EventHandler(this.toSubtaskButton_Click);
             // 
             // label1
             // 
@@ -142,6 +146,7 @@
             this.sTaskUpButton.TabIndex = 17;
             this.sTaskUpButton.Text = "up";
             this.sTaskUpButton.UseVisualStyleBackColor = true;
+            this.sTaskUpButton.Click += new System.EventHandler(this.sTaskUpButton_Click);
             // 
             // sTaskDownButton
             // 
@@ -151,6 +156,7 @@
             this.sTaskDownButton.TabIndex = 18;
             this.sTaskDownButton.Text = "down";
             this.sTaskDownButton.UseVisualStyleBackColor = true;
+            this.sTaskDownButton.Click += new System.EventHandler(this.sTaskDownButton_Click);
             // 
             // subtaskUpButton
             // 
@@ -160,6 +166,7 @@
             this.subtaskUpButton.TabIndex = 19;
             this.subtaskUpButton.Text = "up";
             this.subtaskUpButton.UseVisualStyleBackColor = true;
+            this.subtaskUpButton.Click += new System.EventHandler(this.subtaskUpButton_Click);
             // 
             // subtaskDownButton
             // 
@@ -169,6 +176,7 @@
             this.subtaskDownButton.TabIndex = 20;
             this.subtaskDownButton.Text = "down";
             this.subtaskDownButton.UseVisualStyleBackColor = true;
+            this.subtaskDownButton.Click += new System.EventHandler(this.subtaskDownButton_Click);
             // 
             // delSTaskButton
             // 
@@ -178,6 +186,7 @@
             this.delSTaskButton.TabIndex = 21;
             this.delSTaskButton.Text = "<=";
             this.delSTaskButton.UseVisualStyleBackColor = true;
+            this.delSTaskButton.Click += new System.EventHandler(this.delSTaskButton_Click);
             // 
             // delSubtaskButton
             // 
@@ -187,6 +196,7 @@
             this.delSubtaskButton.TabIndex = 22;
             this.delSubtaskButton.Text = "<=";
             this.delSubtaskButton.UseVisualStyleBackColor = true;
+            this.delSubtaskButton.Click += new System.EventHandler(this.delSubtaskButton_Click);
             // 
             // TaskBook
             // 
@@ -211,6 +221,7 @@
             this.Controls.Add(this.taskTextBox);
             this.Name = "TaskBook";
             this.Text = "TaskBook";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskBook_FormClosing);
             this.Load += new System.EventHandler(this.TaskBook_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

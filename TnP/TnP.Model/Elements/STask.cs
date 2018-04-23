@@ -10,12 +10,12 @@ namespace TnP.Model.Elements
     {
         public string name;
         public long id;
-        public int taskID;
-        public bool procedure;
-        public bool structure;
+        public long taskID;
+        public bool procedure = false;
+        public bool structure = false;
         public int order;
-        public int lplanID;
-        public List<int> subtaskID;
+        public long lplanID;
+        public List<long> subtaskID = new List<long>();
         public bool state;
         public TimeSpan totalT;
         public int totalSubtaskNum;//record number of total subtask

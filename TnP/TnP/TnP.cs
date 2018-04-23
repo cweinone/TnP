@@ -212,14 +212,13 @@ namespace TnP
             UserOperation.GetInstance().Add("STOP_EPLAN");
             if (UserOperation.GetInstance().count() == 1)
             {
-                long id = (long)planTreeView.SelectedNode.Tag;
-                if (MainFormController.StopPlan(id))
+                if (MainFormController.StopPlan())
                 {
                     UserOperation.GetInstance().Remove();
                     foreach (TreeNode n in planTreeView.Nodes)
                     {
                         n.BackColor = Color.Empty;
-                        planTreeView.SelectedNode.ForeColor = Color.Black;
+                        n.ForeColor = Color.Black;
                     }
                 }
             }
@@ -378,9 +377,13 @@ namespace TnP
         #region taskTreeView_MouseDoubleClick
         private void taskTreeView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            long id = (long)taskTreeView.SelectedNode.Tag;
-            TaskBook tb = new TaskBook(id);
-            tb.ShowDialog();
+            if(taskTreeView.SelectedNode != null)
+            {
+                long id = (long)taskTreeView.SelectedNode.Tag;
+                TaskBook tb = new TaskBook(id);
+                tb.ShowDialog();
+            }
+            
         }
         #endregion
 
@@ -513,6 +516,18 @@ namespace TnP
                 closedTreeView.ExpandAll();
             }
 
+            //initial "task" 
+            if (TaskDictionary.GetInstance().GetList() != null)
+            {
+                for(int i = 0; i < TaskDictionary.GetInstance().GetList().Count; i++)
+                {
+                    TreeNode node = new TreeNode();
+                    node.Text = TaskDictionary.GetInstance().GetList()[i].name;
+                    node.Tag = TaskDictionary.GetInstance().GetList()[i].id;
+                    taskTreeView.Nodes.Add(node);
+                }
+            }
+            
             //initial "Everyday1"
             DateTime dt = DateTime.Now;
             int h = dt.Hour;

@@ -91,7 +91,7 @@ namespace TnP.Control
 
         }
 
-        public static bool StopPlan(long id)
+        public static bool StopPlan()
         {
             try
             {

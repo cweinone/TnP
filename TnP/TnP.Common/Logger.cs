@@ -23,7 +23,7 @@ namespace TnP.Common
             else
             {
                 StreamWriter sw = new StreamWriter(filePath, true, System.Text.Encoding.Default);
-                sw.WriteLine(DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss.fff") + "-->" + content);
+                sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff") + "-->" + content);
                 sw.Close();
             }
         }

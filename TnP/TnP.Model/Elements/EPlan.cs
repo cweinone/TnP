@@ -26,10 +26,10 @@ namespace TnP.Model.Elements
         public bool endState;//finished or gave up
         public DateTime endT;//record the time a plan finally over
 
-        public int lplanID;//belong to which long term plan
-        public int taskID;//belong to which task
-        public int goalID;//belong to which goal
-        public int thoughtID;//belong to which thought
+        public long lplanID;//belong to which long term plan
+        public long taskID;//belong to which task
+        public long goalID;//belong to which goal
+        public long thoughtID;//belong to which thought
 
         public Feature feature;//record the characteristic of a plan
         public List<Step> steps = new List<Step>();//record the steps of a plan

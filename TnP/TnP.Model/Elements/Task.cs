@@ -11,10 +11,11 @@ namespace TnP.Model.Elements
         public string name;
         public long id;
         public int progress;
-        public int goalID;//identify origin goal
-        public List<int> staskID;//storage the all member of stask
+        public long goalID;//identify origin goal
+        public List<long> staskID = new List<long>();//store the all member of stask
+        public List<long> allSubID = new List<long>();//store all subtasks 
         public DateTime expecT;//expect finish time
-        public List<int> dailyDoneCount;//daily finished subtask count
+        public List<int> dailyDoneCount = new List<int>();//daily finished subtask count
         public DateTime creatT;//record time the task first created
         public TimeSpan totalT;//record time the task totally used
         public int totalSubtaskNum;//record number of total subtask
