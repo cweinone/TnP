@@ -24,83 +24,83 @@ namespace TnP.Common
             XmlNode root = xmlDoc.CreateElement("Information");
             xmlDoc.AppendChild(root);
 
-            try
-            {
-                XmlNode root_plan = xmlDoc.CreateElement("Plans");
-                root.AppendChild(root_plan);
+            //try
+            //{
+            //    XmlNode root_plan = xmlDoc.CreateElement("Plans");
+            //    root.AppendChild(root_plan);
 
-                //save plans
-                if (EPlanDictionary.GetInstance().GetList() != null)
-                {
-                    List<EPlan> list = EPlanDictionary.GetInstance().GetList();
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        //sub
-                        XmlElement xmlplan = xmlDoc.CreateElement("Plan");
-                        xmlplan.SetAttribute("id", (i + 1).ToString());
+            //    //save plans
+            //    if (EPlanDictionary.GetInstance().GetList() != null)
+            //    {
+            //        List<EPlan> list = EPlanDictionary.GetInstance().GetList();
+            //        for (int i = 0; i < list.Count; i++)
+            //        {
+            //            //sub
+            //            XmlElement xmlplan = xmlDoc.CreateElement("Plan");
+            //            xmlplan.SetAttribute("id", (i + 1).ToString());
 
-                        XmlElement name = xmlDoc.CreateElement("name");
-                        XmlElement id = xmlDoc.CreateElement("id");
-                        XmlElement progress = xmlDoc.CreateElement("progress");
-                        XmlElement state = xmlDoc.CreateElement("state");
-                        XmlElement showT = xmlDoc.CreateElement("appeared_time");
-                        XmlElement startT = xmlDoc.CreateElement("started_time");
-                        XmlElement endT = xmlDoc.CreateElement("end_time");
-                        XmlElement finalT = xmlDoc.CreateElement("expected_end_time");
-                        XmlElement startF = xmlDoc.CreateElement("started_frequency");
-                        XmlElement stopF = xmlDoc.CreateElement("stopped_frequency");
-                        XmlElement endState = xmlDoc.CreateElement("end_state");
-                        XmlElement lastT = xmlDoc.CreateElement("last_time");
-                        XmlElement steps = xmlDoc.CreateElement("steps");
+            //            XmlElement name = xmlDoc.CreateElement("name");
+            //            XmlElement id = xmlDoc.CreateElement("id");
+            //            XmlElement progress = xmlDoc.CreateElement("progress");
+            //            XmlElement state = xmlDoc.CreateElement("state");
+            //            XmlElement showT = xmlDoc.CreateElement("appeared_time");
+            //            XmlElement startT = xmlDoc.CreateElement("started_time");
+            //            XmlElement endT = xmlDoc.CreateElement("end_time");
+            //            XmlElement finalT = xmlDoc.CreateElement("expected_end_time");
+            //            XmlElement startF = xmlDoc.CreateElement("started_frequency");
+            //            XmlElement stopF = xmlDoc.CreateElement("stopped_frequency");
+            //            XmlElement endState = xmlDoc.CreateElement("end_state");
+            //            XmlElement lastT = xmlDoc.CreateElement("last_time");
+            //            XmlElement steps = xmlDoc.CreateElement("steps");
 
-                        name.InnerText = list[i].name;
-                        id.InnerText = list[i].id.ToString();
-                        progress.InnerText = list[i].progress.ToString();
-                        if (list[i].state) state.InnerText = "activated";
-                        else state.InnerText = "inactivated";
-                        showT.InnerText = list[i].showT.ToString();
-                        if (list[i].startT != null) startT.InnerText = list[i].startT.ToString();
-                        else startT.InnerText = "0";
-                        if (list[i].endT != null) endT.InnerText = list[i].endT.ToString();
-                        else endT.InnerText = "0";
-                        if (list[i].finalT != null) finalT.InnerText = list[i].finalT.ToString();
-                        else finalT.InnerText = "0";
-                        startF.InnerText = list[i].startF.ToString();
-                        stopF.InnerText = list[i].stopF.ToString();
-                        if (list[i].endState) endState.InnerText = "done";
-                        else endState.InnerText = "gave_up";
-                        lastT.InnerText = list[i].lastT.ToString();
-                        for (int j = 0; j < list[i].steps.Count; j++)
-                        {
-                            XmlElement step = xmlDoc.CreateElement("step");
-                            step.SetAttribute("order", (j + 1).ToString());
-                            step.InnerText = list[i].steps[j].name;
-                            steps.AppendChild(step);
-                        }
+            //            name.InnerText = list[i].name;
+            //            id.InnerText = list[i].id.ToString();
+            //            progress.InnerText = list[i].progress.ToString();
+            //            if (list[i].state) state.InnerText = "activated";
+            //            else state.InnerText = "inactivated";
+            //            showT.InnerText = list[i].showT.ToString();
+            //            if (list[i].startT != null) startT.InnerText = list[i].startT.ToString();
+            //            else startT.InnerText = "0";
+            //            if (list[i].endT != null) endT.InnerText = list[i].endT.ToString();
+            //            else endT.InnerText = "0";
+            //            if (list[i].finalT != null) finalT.InnerText = list[i].finalT.ToString();
+            //            else finalT.InnerText = "0";
+            //            startF.InnerText = list[i].startF.ToString();
+            //            stopF.InnerText = list[i].stopF.ToString();
+            //            if (list[i].endState) endState.InnerText = "done";
+            //            else endState.InnerText = "gave_up";
+            //            lastT.InnerText = list[i].lastT.ToString();
+            //            for (int j = 0; j < list[i].steps.Count; j++)
+            //            {
+            //                XmlElement step = xmlDoc.CreateElement("step");
+            //                step.SetAttribute("order", (j + 1).ToString());
+            //                step.InnerText = list[i].steps[j].name;
+            //                steps.AppendChild(step);
+            //            }
 
-                        xmlplan.AppendChild(name);
-                        xmlplan.AppendChild(id);
-                        xmlplan.AppendChild(progress);
-                        xmlplan.AppendChild(state);
-                        xmlplan.AppendChild(showT);
-                        xmlplan.AppendChild(startT);
-                        xmlplan.AppendChild(endT);
-                        xmlplan.AppendChild(finalT);
-                        xmlplan.AppendChild(startF);
-                        xmlplan.AppendChild(stopF);
-                        xmlplan.AppendChild(endState);
-                        xmlplan.AppendChild(lastT);
-                        xmlplan.AppendChild(steps);
+            //            xmlplan.AppendChild(name);
+            //            xmlplan.AppendChild(id);
+            //            xmlplan.AppendChild(progress);
+            //            xmlplan.AppendChild(state);
+            //            xmlplan.AppendChild(showT);
+            //            xmlplan.AppendChild(startT);
+            //            xmlplan.AppendChild(endT);
+            //            xmlplan.AppendChild(finalT);
+            //            xmlplan.AppendChild(startF);
+            //            xmlplan.AppendChild(stopF);
+            //            xmlplan.AppendChild(endState);
+            //            xmlplan.AppendChild(lastT);
+            //            xmlplan.AppendChild(steps);
 
-                        root_plan.AppendChild(xmlplan);
+            //            root_plan.AppendChild(xmlplan);
 
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                Logger.WriteLogs("Saving eplan XML error: " + ex.Message);
-            }
+            //        }
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    Logger.WriteLogs("Saving eplan XML error: " + ex.Message);
+            //}
 
             try
             {
@@ -486,45 +486,45 @@ namespace TnP.Common
         {
             xmlDoc.Load(filePath);
 
-            try
-            {
-                //load plan
+            //try
+            //{
+            //    //load plan
 
-                XmlNodeList planNodeList = xmlDoc.SelectSingleNode("Information/Plans").ChildNodes;
+            //    XmlNodeList planNodeList = xmlDoc.SelectSingleNode("Information/Plans").ChildNodes;
 
-                foreach (XmlNode xnode in planNodeList)
-                {
-                    EPlan plan = new EPlan();
-                    XmlElement xe = (XmlElement)xnode;
+            //    foreach (XmlNode xnode in planNodeList)
+            //    {
+            //        EPlan plan = new EPlan();
+            //        XmlElement xe = (XmlElement)xnode;
 
-                    plan.name = xe.GetElementsByTagName("name")[0].InnerText;
-                    plan.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
-                    plan.progress = int.Parse(xe.GetElementsByTagName("progress")[0].InnerText);
-                    if (xe.GetElementsByTagName("state")[0].InnerText == "activated") plan.state = true;
-                    else if (xe.GetElementsByTagName("state")[0].InnerText == "inactivated") plan.state = false;
-                    plan.showT = Convert.ToDateTime(xe.GetElementsByTagName("appeared_time")[0].InnerText);
-                    plan.startT = Convert.ToDateTime(xe.GetElementsByTagName("started_time")[0].InnerText);
-                    plan.endT = Convert.ToDateTime(xe.GetElementsByTagName("end_time")[0].InnerText);
-                    plan.finalT = Convert.ToDateTime(xe.GetElementsByTagName("expected_end_time")[0].InnerText);
-                    plan.startF = int.Parse(xe.GetElementsByTagName("started_frequency")[0].InnerText);
-                    plan.stopF = int.Parse(xe.GetElementsByTagName("stopped_frequency")[0].InnerText);
-                    if (xe.GetElementsByTagName("end_state")[0].InnerText == "done") plan.endState = true;
-                    else if (xe.GetElementsByTagName("end_state")[0].InnerText == "gave_up") plan.endState = false;
-                    plan.lastT = TimeSpan.Parse(xe.GetElementsByTagName("last_time")[0].InnerText);
-                    for (int i = 0; i < xe.GetElementsByTagName("steps")[0].ChildNodes.Count; i++)
-                    {
-                        Step s = new Step();
-                        s.name = xe.GetElementsByTagName("steps")[0].ChildNodes[i].InnerText;
-                        plan.steps.Add(s);
-                    }
+            //        plan.name = xe.GetElementsByTagName("name")[0].InnerText;
+            //        plan.id = long.Parse(xe.GetElementsByTagName("id")[0].InnerText);
+            //        plan.progress = int.Parse(xe.GetElementsByTagName("progress")[0].InnerText);
+            //        if (xe.GetElementsByTagName("state")[0].InnerText == "activated") plan.state = true;
+            //        else if (xe.GetElementsByTagName("state")[0].InnerText == "inactivated") plan.state = false;
+            //        plan.showT = Convert.ToDateTime(xe.GetElementsByTagName("appeared_time")[0].InnerText);
+            //        plan.startT = Convert.ToDateTime(xe.GetElementsByTagName("started_time")[0].InnerText);
+            //        plan.endT = Convert.ToDateTime(xe.GetElementsByTagName("end_time")[0].InnerText);
+            //        plan.finalT = Convert.ToDateTime(xe.GetElementsByTagName("expected_end_time")[0].InnerText);
+            //        plan.startF = int.Parse(xe.GetElementsByTagName("started_frequency")[0].InnerText);
+            //        plan.stopF = int.Parse(xe.GetElementsByTagName("stopped_frequency")[0].InnerText);
+            //        if (xe.GetElementsByTagName("end_state")[0].InnerText == "done") plan.endState = true;
+            //        else if (xe.GetElementsByTagName("end_state")[0].InnerText == "gave_up") plan.endState = false;
+            //        plan.lastT = TimeSpan.Parse(xe.GetElementsByTagName("last_time")[0].InnerText);
+            //        for (int i = 0; i < xe.GetElementsByTagName("steps")[0].ChildNodes.Count; i++)
+            //        {
+            //            Step s = new Step();
+            //            s.name = xe.GetElementsByTagName("steps")[0].ChildNodes[i].InnerText;
+            //            plan.steps.Add(s);
+            //        }
 
-                    EPlanDictionary.GetInstance().Add(plan);
-                }
-            }
-            catch(Exception ex)
-            {
-                Logger.WriteLogs("Loading eplan XML error: " + ex.Message);
-            }
+            //        EPlanDictionary.GetInstance().Add(plan);
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    Logger.WriteLogs("Loading eplan XML error: " + ex.Message);
+            //}
 
             try
             {

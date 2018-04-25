@@ -34,10 +34,53 @@ namespace TnP.Control
         {
             try
             {
-                EPlan plan = new EPlan();
-                plan.name = p;
-                plan.id = id;
-                EPlanDictionary.GetInstance().Add(plan);
+                if(TaskDictionary.GetInstance().find(0) == null)
+                {
+                    Model.Elements.Task task = new Model.Elements.Task();
+                    task.name = "DEFAULT";
+                    task.id = 0;
+                    task.scale = 31;
+                    TaskDictionary.GetInstance().Add(task);
+
+                    STask st = new STask();
+                    st.name = "DEFAULT_STASK";
+                    st.id = 0;
+                    st.order = 0;
+                    STaskDictionary.GetInstance().Add(st);
+
+                    SubTask subt = new SubTask();
+                    subt.name = p;
+                    subt.id = id;
+                    subt.showT = DateTime.Now;
+                    SubTaskDictionary.GetInstance().Add(subt);
+
+                    EPlan plan = new EPlan();
+                    plan.name = p;
+                    plan.id = id;
+                    plan.showT = DateTime.Now;
+                    EPlanDictionary.GetInstance().Add(plan);
+
+                    st.subtaskID.Add(subt.id);
+                    task.staskID.Add(st.id);
+                }
+                else
+                {
+                    Model.Elements.Task task = TaskDictionary.GetInstance().find(0);
+
+                    SubTask subt = new SubTask();
+                    subt.name = p;
+                    subt.id = id;
+                    subt.showT = DateTime.Now;
+                    SubTaskDictionary.GetInstance().Add(subt);
+
+                    EPlan plan = new EPlan();
+                    plan.name = p;
+                    plan.id = id;
+                    plan.showT = DateTime.Now;
+                    EPlanDictionary.GetInstance().Add(plan);
+
+                    STaskDictionary.GetInstance().find(0).subtaskID.Add(subt.id);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -73,14 +116,13 @@ namespace TnP.Control
                     {
                         p.state = false;
                         p.stopF += 1;
-                        p.lastT += DateTime.Now - p.startT;//*** have problem here ***
+                        p.lastT += DateTime.Now - p.startT.Last();//*** have problem here ***
                     }
                 }
                 EPlan plan = EPlanDictionary.GetInstance().find(id);
                 plan.state = true;
                 plan.startF += 1;
-                if (plan.startT == null) plan.startT = DateTime.Now;
-
+                plan.startT.Add(DateTime.Now);
                 return true;
             }
             catch (Exception ex)
@@ -101,7 +143,7 @@ namespace TnP.Control
                     {
                         p.state = false;
                         p.stopF += 1;
-                        p.lastT += DateTime.Now - p.startT;//*** have problem here ***
+                        p.lastT += DateTime.Now - p.startT.Last();//*** have problem here ***
                     }
                 }
                 return true;
@@ -121,7 +163,7 @@ namespace TnP.Control
                 if(plan.state)
                 {
                     plan.endT = DateTime.Now;
-                    plan.lastT += DateTime.Now - plan.startT;
+                    plan.lastT += DateTime.Now - plan.startT.Last();
                     plan.endState = true;
                     plan.progress += 10;
                 }

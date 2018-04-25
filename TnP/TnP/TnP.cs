@@ -57,6 +57,10 @@ namespace TnP
                 try
                 {
                     stopPlanButton.PerformClick();
+                    foreach(SubTask sub in SubTaskDictionary.GetInstance().GetList())
+                    {
+                        if (sub.ready) sub.ready = false;
+                    }
                     xmlIO.SaveXML(filePath, xmlDoc);
                 }
                 catch (Exception ex)
@@ -394,7 +398,7 @@ namespace TnP
             {
                 if (p.state == true)
                 {
-                    int sec = (int)(DateTime.Now - p.startT + p.lastT).TotalSeconds;
+                    int sec = (int)(DateTime.Now - p.startT.Last() + p.lastT).TotalSeconds;
                     if (sec < 60)
                     {
                         timeHour.Text = "00";

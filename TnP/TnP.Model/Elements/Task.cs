@@ -23,5 +23,7 @@ namespace TnP.Model.Elements
         public int popularity;
         public int reward;
         public bool state;//taskbook is closed (y/n)
+
+        public int scale;//indicate the max stask number: ext_small: 3; small: 5; standard: 7; huge: 15; ext_huge: 31
     }
 }

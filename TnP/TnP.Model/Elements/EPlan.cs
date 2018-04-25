@@ -16,9 +16,9 @@ namespace TnP.Model.Elements
 
         public int startF = 0;//record the plan-start frequency
         public int stopF = 0;//record the plan-stop frequency
-        public DateTime startT;//record the time a plan begin
+        public List<DateTime> startT = new List<DateTime>();//record the time a plan begin
         public TimeSpan lastT = TimeSpan.Zero;//record the period of a plan
-        public DateTime stopT;
+        public List<DateTime> stopT = new List<DateTime>();
         public DateTime finalT;//record the time a plan should be over
         public DateTime showT;//record the time a plan first appear
 
